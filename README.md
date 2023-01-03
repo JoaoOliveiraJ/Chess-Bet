@@ -1,3 +1,3 @@
-# Xadrez
+# Chess Bet
 
-Esse é um [site](https://edu15076.github.io/xadrez/) de xadrez com um jogo de xadrez 🙂
+Plataforma de apostas online onde você aposta contra outra pessoa, tudo dependerá de suas habilidades.
