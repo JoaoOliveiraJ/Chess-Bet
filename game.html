@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+        <title>Chess</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Raleway:wght@500&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="img/black_knight.svg">
+    </head>
+    <body oncontextmenu="return false;";>
+
+        
+        <div id="open-page">
+            <!--this div is desapearing when ' ' is pressed-->
+            <h1>Chess</h1>
+            <img src="">
+            <p>Press <mark>SPACE</mark> to continue</p>
+        </div>
+        <!--janela das configurações incompleta-->
+        <div class="pop-up-configuracoes-fechado" id="configuracoes">
+            <div id="configuracoes-janela">
+                <div class="temas" id="wood" 
+                    data-tema="wood"
+                    data-dark-square="rgb(163, 116, 86)" 
+                    data-light-square="rgb(240, 217, 181)">
+                    <h2>Wood</h2>
+                </div>
+                <div class="temas" id="blue"
+                    data-tema="blue"
+                    data-dark-square="rgb(45, 66, 106)" 
+                    data-light-square="rgb(132, 146, 172)">
+                    <h2>Blue</h2>
+                </div>
+                <div class="temas" id="modern"
+                    data-tema="modern"  
+                    data-dark-square="rgb(73, 73, 72)" 
+                    data-light-square="rgb(170, 170, 170)">
+                    <h2>Modern</h2>
+                </div>
+                <div class="temas" id="traditional" 
+                    data-tema="traditional"
+                    data-dark-square="rgb(29, 93, 51)" 
+                    data-light-square="rgb(233, 227, 219)">
+                    <h2>Traditional</h2>
+                </div>
+                <div class="botoes-cofiguracoes">
+                    <div class="opcoes reset">Resetar tabuleiro</div>
+                </div>
+            </div>
+        </div>
+        <!--------------------------------------->
+        <header>
+            <a href="index.html">Chess BET</a>
+            <div class="container">
+                <input type="checkbox" id="checkbox-menu">
+            
+                <label for="checkbox-menu">
+                  <span></span>
+                  <span></span>
+                </label>
+             
+            </div>
+        </header>
+
+        <nav>
+            <div class="opcoes" id="login-btn">Login</div>          
+            <div class="opcoes" id="configuracoes-btn">Configurações</div>
+            <a href="desenvolvedores.html"><div class="opcoes">Recarrega BUSD</div></a>
+        </nav>
+
+        <!-- fonte das peças: https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces -->
+        <div class="container-homepage">
+            <div>
+                <section class="search_match">
+                    <h2>Encontra Partida</h2>
+
+                    <span>Aposta</span>
+                    <input type="text" name="" id="bet_value" placeholder="1.0">
+                    <button type="submit" class="btn_match">Match</button>
+
+                </section>
+            </div>
+            <main tabindex="0" class="container-xadrez">
+                <section id="game-over">
+                    <div>
+                        <div>
+                            <h2></h2>
+                            <p></p>
+                            <div id="tabuleiro-final"><img src="" id="pecas-resultado"></div>
+                        </div>
+                        <div class="opcoes reset">Play again</div>
+                        <div class="opcoes" id="save">Save</div>
+                    </div>
+                </section>
+                <section id="black">
+                    <span></span>
+                    <div><p></p></div>
+                    <div>
+                        <select>
+                            <option class="option" value="you">you</option>
+                            <option class="option" value="cumbuca (1500)">cumbuca</option>
+                            <option class="option" value="sei-mate-pastor (800)">sei mate pastor</option>
+                            <option class="option" value="random engine (2000)">random engine</option>
+                        </select>
+                    </div>
+                </section>
+                <section id="white">
+                    <span></span>
+                    <div><p></p></div>
+                    <div>
+                        <select>
+                            <option class="option" value="you">you</option>
+                            <option class="option" value="cumbuca (1500)">cumbuca</option>
+                            <option class="option" value="sei-mate-pastor (800)">sei mate pastor</option>
+                            <option class="option" value="random engine (2000)">random engine</option>
+                        </select>
+                    </div>
+                </section>
+                <section id="play">
+                    <div class="opcoes">Plaassay</div>
+                </section>
+                <img src="img/circle_arrow_icon.png" id="flip-board" />
+                <img src="img/flag_icon.png" class="reset" id="resign" />
+                
+                <div id="tabuleiro-e-pecas">
+                    <canvas id="board" width="1040" height="1040"></canvas>
+                    <section id="pieces-move">
+                        <section id="black-promotion">
+                            <img draggable="false" data-piece="queen" src="img/black_queen.svg">
+                            <img draggable="false" data-piece="knight" src="img/black_knight.svg">
+                            <img draggable="false" data-piece="rook" src="img/black_rook.svg">
+                            <img draggable="false" data-piece="bishop" src="img/black_bishop.svg">
+                        </section>
+                
+                        <section id="white-promotion">
+                            <img draggable="false" data-piece="queen" src="img/white_queen.svg">
+                            <img draggable="false" data-piece="knight" src="img/white_knight.svg">
+                            <img draggable="false" data-piece="rook" src="img/white_rook.svg">
+                            <img draggable="false" data-piece="bishop" src="img/white_bishop.svg">
+                        </section>
+                        <div data-square="a1"><img draggable="false" class="piece" src="img/white_rook.svg"></div>
+                        <div data-square="b1"><img draggable="false" class="piece" src="img/white_knight.svg"></div>
+                        <div data-square="c1"><img draggable="false" class="piece" src="img/white_bishop.svg"></div>
+                        <div data-square="d1"><img draggable="false" class="piece" src="img/white_queen.svg"></div>
+                        <div data-square="e1"><img draggable="false" class="piece" src="img/white_king.svg"></div>
+                        <div data-square="f1"><img draggable="false" class="piece" src="img/white_bishop.svg"></div>
+                        <div data-square="g1"><img draggable="false" class="piece" src="img/white_knight.svg"></div>
+                        <div data-square="h1"><img draggable="false" class="piece" src="img/white_rook.svg"></div>
+                        <div data-square="a2"><img draggable="false" class="piece" src="img/white_pawn.svg"></div>
+                        <div data-square="b2"><img draggable="false" class="piece" src="img/white_pawn.svg"></div>
+                        <div data-square="c2"><img draggable="false" class="piece" src="img/white_pawn.svg"></div>
+                        <div data-square="d2"><img draggable="false" class="piece" src="img/white_pawn.svg"></div>
+                        <div data-square="e2"><img draggable="false" class="piece" src="img/white_pawn.svg"></div>
+                        <div data-square="f2"><img draggable="false" class="piece" src="img/white_pawn.svg"></div>
+                        <div data-square="g2"><img draggable="false" class="piece" src="img/white_pawn.svg"></div>
+                        <div data-square="h2"><img draggable="false" class="piece" src="img/white_pawn.svg"></div>
+                        <div data-square="a3"></div>
+                        <div data-square="b3"></div>
+                        <div data-square="c3"></div>
+                        <div data-square="d3"></div>
+                        <div data-square="e3"></div>
+                        <div data-square="f3"></div>
+                        <div data-square="g3"></div>
+                        <div data-square="h3"></div>
+                        <div data-square="a4"></div>
+                        <div data-square="b4"></div>
+                        <div data-square="c4"></div>
+                        <div data-square="d4"></div>
+                        <div data-square="e4"></div>
+                        <div data-square="f4"></div>
+                        <div data-square="g4"></div>
+                        <div data-square="h4"></div>
+                        <div data-square="a5"></div>
+                        <div data-square="b5"></div>
+                        <div data-square="c5"></div>
+                        <div data-square="d5"></div>
+                        <div data-square="e5"></div>
+                        <div data-square="f5"></div>
+                        <div data-square="g5"></div>
+                        <div data-square="h5"></div>
+                        <div data-square="a6"></div>
+                        <div data-square="b6"></div>
+                        <div data-square="c6"></div>
+                        <div data-square="d6"></div>
+                        <div data-square="e6"></div>
+                        <div data-square="f6"></div>
+                        <div data-square="g6"></div>
+                        <div data-square="h6"></div>
+                        <div data-square="a7"><img draggable="false" class="piece" src="img/black_pawn.svg"></div>
+                        <div data-square="b7"><img draggable="false" class="piece" src="img/black_pawn.svg"></div>
+                        <div data-square="c7"><img draggable="false" class="piece" src="img/black_pawn.svg"></div>
+                        <div data-square="d7"><img draggable="false" class="piece" src="img/black_pawn.svg"></div>
+                        <div data-square="e7"><img draggable="false" class="piece" src="img/black_pawn.svg"></div>
+                        <div data-square="f7"><img draggable="false" class="piece" src="img/black_pawn.svg"></div>
+                        <div data-square="g7"><img draggable="false" class="piece" src="img/black_pawn.svg"></div>
+                        <div data-square="h7"><img draggable="false" class="piece" src="img/black_pawn.svg"></div>
+                        <div data-square="a8"><img draggable="false" class="piece" src="img/black_rook.svg"></div>
+                        <div data-square="b8"><img draggable="false" class="piece" src="img/black_knight.svg"></div>
+                        <div data-square="c8"><img draggable="false" class="piece" src="img/black_bishop.svg"></div>
+                        <div data-square="d8"><img draggable="false" class="piece" src="img/black_queen.svg"></div>
+                        <div data-square="e8"><img draggable="false" class="piece" src="img/black_king.svg"></div>
+                        <div data-square="f8"><img draggable="false" class="piece" src="img/black_bishop.svg"></div>
+                        <div data-square="g8"><img draggable="false" class="piece" src="img/black_knight.svg"></div>
+                        <div data-square="h8"><img draggable="false" class="piece" src="img/black_rook.svg"></div>
+                    </section>
+                </div>
+            </main>
+            <div>
+                
+                <section class="show_match">
+                    <h2>Partidas em andamento</h2>
+
+
+                    <div class="list_match">
+                        
+                        <section class="separe_top_list_match">
+ <!-- <span>Lista de Partidas</span> -->
+                        <span class="icon_avatar_back"> </span>
+                        <ul>
+                             <li>
+                              GM KASPAROV VS GM JOAO 
+                            </li>
+                            
+                        </ul>
+                        <span class="icon_avatar_white"> </span>
+                        <button>Ver Partida</button>
+                       
+                    </section>
+
+                     <section class="separe_top_list_match">
+ <!-- <span>Lista de Partidas</span> -->
+                        <span class="icon_avatar_back"> </span>
+                        <ul>
+                             <li>
+                              GM KASPAROV VS GM JOAO 
+                            </li>
+                            
+                        </ul>
+                        <span class="icon_avatar_white"> </span>
+                        <button>Ver Partida</button>
+                       
+                    </section>
+
+                    <section class="separe_top_list_match">
+                        <!-- <span>Lista de Partidas</span> -->
+                                               <span class="icon_avatar_back"> </span>
+                                               <ul>
+                                                    <li>
+                                                     GM KASPAROV VS GM JOAO 
+                                                   </li>
+                                                   
+                                               </ul>
+                                               <span class="icon_avatar_white"> </span>
+                                               <button>Ver Partida</button>
+                                              
+                                           </section>
+
+
+                                           
+                    
+                        </div>
+
+                        
+                       
+                    </div>
+                   
+
+                </section>
+
+            </div>
+        </div>
+<!-- 
+        <div id="cover"></div>
+
+        <div id="centralizing">
+            <div id="login">
+                <div id="login-topo" >
+                    <h2>Login</h2>
+                    <p></p>
+                </div>
+                <div id="login-inicial">
+                    <div id="login-existente">
+                        <input type="text" placeholder="User" minlength="5" maxlength="20" id="nome-logar" class="input-login">
+                        <div class="login-olho">
+                            <input type="password" placeholder="Password" minlength="8" maxlength="16" id="senha-logar" class="input-login">
+                            <label for="senha-logar" class="olho"><img src="img/olho-aberto.svg" class="olho-img"></label>
+                        </div>
+                    </div>
+                    <button id="botao-login" class="botoes" type="submit">Login</button>
+                    <p>No account? <button>Join</button> us!</p>
+                </div>
+                <div id="logon">
+                    <div id="logon-input">
+                        <input type="text" placeholder="User name" minlength="5" maxlength="20" id="novo-nome" class="input-login">
+                        <input type="email" placeholder="Email" step="1" id="email" class="input-login">
+                        <div class="login-olho">
+                            <input type="password" placeholder="New password" minlength="16" maxlength="16" id="nova-senha" class="input-login">
+                            <label for="nova-senha" class="olho"><img src="img/olho-aberto.svg" class="olho-img"></label>
+                        </div>
+                        <div class="login-olho">
+                            <input type="password" placeholder="Confirm password" minlength="16" maxlength="16" class="input-login" id="senha-confirmacao">
+                            <label for="senha-confirmacao" class="olho"><img src="img/olho-aberto.svg" class="olho-img"></label>
+                        </div>
+                    </div>
+                    <button id="botao-confirmar" class="botoes" type="submit">Create</button>
+                </div>
+            </div>
+        </div> -->
+
+        <script src="scripts/cria_tabuleiro.js"></script>
+        <script src="scripts/pieces.js"></script>
+        <script src="scripts/chess.js"></script>
+        <script src="scripts/menus.js"></script>
+        <script src="scripts/login.js"></script>
+        <script src="engines/engines.js"></script>
+        <script src="engines/cumbuca.js"></script>
+        <script src="engines/sei-mate-pastor.js"></script>
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    </body>
+</html>
